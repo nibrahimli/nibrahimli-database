@@ -83,7 +83,6 @@ public class ArticleDaoTest {
 		logger.info("testing getById()");
 		
 		assertEquals(article, expectedArticle);
-		
 	}
 	
 	
