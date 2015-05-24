@@ -21,7 +21,7 @@ import com.nibrahimli.database.blog.entity.Article;
 
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(
-//locations={"/spring/nibrahimli-database-context-pool-jdbc-blog-backoffice.xml"})
+//locations={"/spring/nibrahimli-database-pool-jdbc-context.xml"})
 public class ArticleDaoTest {
 	
 	private final static Logger logger = LoggerFactory.getLogger(ArticleDaoTest.class);
