@@ -53,14 +53,11 @@
 	</bean>	
 	 
 	 <!-- allows use @Transactional annotation -->
-	<tx:annotation-driven transaction-manager="txManager"/>
+	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
 	
 	
 	 <!-- Activates scanning of @Repository and @Service -->
 	<context:component-scan base-package="com.nibrahimli.database.blog.dao.impl"/>  	
-
-
-
 
 
 	<!-- Force the use of CGLIB proxies -->
