@@ -72,12 +72,12 @@ public class TestDatabaseConnection {
 		
 
 		
-		List<User> userList = userDao.getAll();
-		logger.info("user list {}", userList);
-		List<Category> categoryList = categoryDao.getAll();
-		logger.info("category list {}", categoryList);
-		List<Article> articleList = articleDao.getAll();
-		logger.info("article list {}", articleList);
+//		List<User> userList = userDao.getAll();
+//		logger.info("user list {}", userList);
+//		List<Category> categoryList = categoryDao.getAll();
+//		logger.info("category list {}", categoryList);
+//		List<Article> articleList = articleDao.getAll();
+//		logger.info("article list {}", articleList);
 	}
 	
 	
