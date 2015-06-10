@@ -26,7 +26,6 @@ public class Article {
 	private Date date ;
 	private String keywords;
 	private Set<User> authorList;
-	private Set<Category> categoryList;
 
 	/**
 	 * @return the id
@@ -116,23 +115,6 @@ public class Article {
 	public void setAuthorList(Set<User> authorList) {
 		this.authorList = authorList;
 	}
-
-	/**
-	 * @return the categoryList
-	 */
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name = "article_category", joinColumns = 
-	{@JoinColumn(name = "article_id") }, inverseJoinColumns = {@JoinColumn(name = "category_id") })
-	public Set<Category> getCategoryList() {
-		return categoryList;
-	}
-
-	/**
-	 * @param categoryList the categoryList to set
-	 */
-	public void setCategoryList(Set<Category> categoryList) {
-		this.categoryList = categoryList;
-	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -140,6 +122,6 @@ public class Article {
 	public String toString() {
 		return "Article [id=" + id + ", title=" + title + ", text=" + text
 				+ ", date=" + date + ", keywords=" + keywords + ", authorList="
-				+ authorList + ", categoryList=" + categoryList + "]";
+				+ authorList + "]";
 	}
 }
