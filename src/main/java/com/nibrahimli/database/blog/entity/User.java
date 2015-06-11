@@ -85,12 +85,12 @@ public class User {
 	 */
 	@Column(name="password", unique=false, nullable=false, columnDefinition="VARCHAR(255)")
 	@Length(min=8,  message="last name must be at least 8 characters!")
-	@Pattern.List({
-		@Pattern(regexp = "(?=.*[0-9])", message = "Password must contain one digit!"),
-	    @Pattern(regexp = "(?=.*[a-z])", message = "Password must contain one lowercase letter!"),
-	    @Pattern(regexp = "(?=.*[A-Z])", message = "Password must contain one uppercase letter!"),
-	    @Pattern(regexp = "(?=\\S+$)", message = "Password must contain no whitespace!")
-	})
+//	@Pattern.List({
+//		@Pattern(regexp = "(?=.*[0-9])", message = "Password must contain one digit!"),
+//	    @Pattern(regexp = "(?=.*[a-z])", message = "Password must contain one lowercase letter!"),
+//	    @Pattern(regexp = "(?=.*[A-Z])", message = "Password must contain one uppercase letter!"),
+//	    @Pattern(regexp = "(?=\\S+$)", message = "Password must contain no whitespace!")
+//	})
 	public String getPassword() {
 		return password;
 	}
