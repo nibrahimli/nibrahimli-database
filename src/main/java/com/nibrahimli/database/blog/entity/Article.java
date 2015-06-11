@@ -74,7 +74,7 @@ public class Article {
 	 * @return the date
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="date", unique=false, nullable=false)
+	@Column(name="date", unique=false, nullable=false, length = 20)
 	public Date getDate() {
 		return date;
 	}
