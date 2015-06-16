@@ -9,11 +9,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="article_user")
-public class ArticleUser {
+@Table(name="article_author")
+public class ArticleAuthor {
 	
 	private Long articleId;
-	private User user;
+	private Author author;
 	
 	/**
 	 * @return the articleId
@@ -30,18 +30,18 @@ public class ArticleUser {
 		this.articleId = articleId;
 	}
 	/**
-	 * @return the userId
+	 * @return the authorId
 	 */
 	@ManyToOne(cascade=CascadeType.DETACH)
-	@JoinColumn(name="user_id",  referencedColumnName="id",nullable=true)
-	public User getUser() {
-		return user;
+	@JoinColumn(name="author_id",  referencedColumnName="id",nullable=true)
+	public Author getAuthor() {
+		return author;
 	}
 	/**
-	 * @param userId the userId to set
+	 * @param authorId the userId to set
 	 */
-	public void setUser(User user) {
-		this.user = user;
+	public void setAuthor(Author author) {
+		this.author = author;
 	}
 	
 	

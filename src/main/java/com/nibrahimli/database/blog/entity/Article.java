@@ -25,7 +25,7 @@ public class Article {
 	private String text;
 	private Date date ;
 	private String keywords;
-	private Set<User> authorList;
+	private Set<Author> authorList;
 
 	/**
 	 * @return the id
@@ -103,16 +103,16 @@ public class Article {
 	 * @return the authorList
 	 */
 	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(name = "article_user", joinColumns = 
-	{@JoinColumn(name = "article_id") }, inverseJoinColumns = {@JoinColumn(name = "user_id") })
-	public Set<User> getAuthorList() {
+	@JoinTable(name = "article_author", joinColumns = 
+	{@JoinColumn(name = "article_id") }, inverseJoinColumns = {@JoinColumn(name = "author_id") })
+	public Set<Author> getAuthorList() {
 		return authorList;
 	}
 
 	/**
 	 * @param authorList the authorList to set
 	 */
-	public void setAuthorList(Set<User> authorList) {
+	public void setAuthorList(Set<Author> authorList) {
 		this.authorList = authorList;
 	}
 	/* (non-Javadoc)

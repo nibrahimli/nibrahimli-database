@@ -11,8 +11,8 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
 @Entity
-@Table(name="user")
-public class User {
+@Table(name="author")
+public class Author {
  
 	private Long id;
 	private String pseudo;
