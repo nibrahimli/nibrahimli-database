@@ -27,10 +27,10 @@
 //	
 //	@Autowired
 //	private ArticleDao articleDao ;
-////	
+//	
 //	@Test
 //	public void test(){
-		
+//		
 //		User user = new User();
 //		user.setPseudo("nibrahimli");
 //		user.setFirstName("Nihat");
@@ -39,14 +39,14 @@
 //		user.setConfirmPassword("1111");
 //		user.setEmail("nihatibrahimli@gmail.com");
 //		user.setConfirmEmail("nihatibrahimli@gmail.com");
-		
+//		
 //		authorDao.create(user);
-		
+//		
 //		Category category = new Category();
 //		category.setName("Web");
-		
+//		
 //		categoryDao.create(category);
-		
+//		
 //		Article article = new Article();
 //		article.setTitle("Web Spring");
 //		article.setText("Good framwork");
@@ -60,15 +60,15 @@
 //		article.setAuthorList(authorList);
 //		
 //		articleDao.create(article);
-		
-		
-
-		
+//		
+//		
+//
+//		
 //		List<Author> userList = authorDao.getAll();
 //		logger.info("author list {}", userList);
 //		List<Article> articleList = articleDao.getAll();
 //		logger.info("article list {}", articleList);
 //	}
-	
-	
+//	
+//	
 //}
