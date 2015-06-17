@@ -62,24 +62,6 @@
 //		authorDao.create(author1);
 //		
 //		
-//	public void test(){
-//		
-//		User user = new User();
-//		user.setPseudo("nibrahimli");
-//		user.setFirstName("Nihat");
-//		user.setLastName("IBRAHIMLI");
-//		user.setPassword("1111");
-//		user.setConfirmPassword("1111");
-//		user.setEmail("nihatibrahimli@gmail.com");
-//		user.setConfirmEmail("nihatibrahimli@gmail.com");
-//		
-//		authorDao.create(user);
-//		
-//		Category category = new Category();
-//		category.setName("Web");
-//		
-//		categoryDao.create(category);
-//		
 //		Article article = new Article();
 //		article.setTitle("Web Spring");
 //		article.setText("Good framwork");
