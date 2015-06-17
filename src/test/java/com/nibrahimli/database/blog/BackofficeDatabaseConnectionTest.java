@@ -1,6 +1,9 @@
 //package com.nibrahimli.database.blog;
 //
+//import java.util.Arrays;
+//import java.util.HashSet;
 //import java.util.List;
+//import java.util.Set;
 //
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
@@ -25,10 +28,29 @@
 //	
 //	@Autowired
 //	private UserDao userDao;
+//	@Autowired
 //	private SecurityRoleDao securityRoleDao ;
 //	
 //	@Test
 //	public void test(){
+//		
+//		SecurityRole securityRole = new SecurityRole();
+//		securityRole.setRoleName("ROLE_ADMIN");
+//		
+//		User user = new User();
+//		user.setUsername("admin");
+//		user.setPassword("1cv*ni2015");
+//		user.setEnabled(true);
+//		Set<SecurityRole> securityRoleList1 = new HashSet<SecurityRole>();
+//		securityRoleList1.add(securityRole);
+//		
+//		user.setSecurityRoleList(securityRoleList1);
+//		
+//		logger.info("error is coming just after that");
+//		securityRoleDao.create(securityRole);
+//		userDao.create(user);
+//		
+//		
 //		List<User> userList = userDao.getAll();
 //		logger.info("userList {}", userList);
 //		List<SecurityRole> securityRoleList = securityRoleDao.getAll();

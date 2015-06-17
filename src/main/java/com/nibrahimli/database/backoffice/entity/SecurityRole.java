@@ -32,7 +32,7 @@ public class SecurityRole {
 	/**
 	 * @return the roleName
 	 */
-	@Column(name="user_role", nullable=false, unique=true, columnDefinition="VARCHAR(255)")
+	@Column(name="role_name", columnDefinition="VARCHAR(255)")
 	public String getRoleName() {
 		return roleName;
 	}
