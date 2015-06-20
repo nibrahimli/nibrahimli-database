@@ -33,7 +33,7 @@ public class ArticleAuthor {
 	 * @return the authorId
 	 */
 	@ManyToOne(cascade=CascadeType.DETACH)
-	@JoinColumn(name="author_id",  referencedColumnName="id",nullable=true)
+	@JoinColumn(name="author_id",  referencedColumnName="id", nullable=true)
 	public Author getAuthor() {
 		return author;
 	}

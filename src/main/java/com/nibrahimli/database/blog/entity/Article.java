@@ -1,6 +1,7 @@
 package com.nibrahimli.database.blog.entity;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,6 +25,7 @@ public class Article {
 	private Long id ;
 	private String title;
 	private String text;
+	private List<Image> images ;
 	private Date date ;
 	private String keywords;
 	private Set<Author> authorList;
@@ -45,7 +48,7 @@ public class Article {
 	/**
 	 * @return the title
 	 */
-	@Column(name="title", unique=false, nullable=false, columnDefinition="VARCHAR(255)")
+	@Column(name="title", columnDefinition="VARCHAR(255)")
 	public String getTitle() {
 		return title;
 	}
@@ -59,7 +62,7 @@ public class Article {
 	/**
 	 * @return the text
 	 */
-	@Column(name="text", unique=false, nullable=false, columnDefinition = "LONGTEXT")
+	@Column(name="text", columnDefinition = "LONGTEXT")
 	public String getText() {
 		return text;
 	}
@@ -74,7 +77,7 @@ public class Article {
 	 * @return the date
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="date", unique=false, nullable=false, length = 20)
+	@Column(name="date", length = 20)
 	public Date getDate() {
 		return date;
 	}
@@ -86,9 +89,27 @@ public class Article {
 		this.date = date;
 	}
 	/**
+	 * @return the images
+	 */
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinTable(
+	name="article_image",
+	joinColumns={@JoinColumn(name="article_id")},
+	inverseJoinColumns={@JoinColumn(name="image_id")}
+	)
+	public List<Image> getImages() {
+		return images;
+	}
+	/**
+	 * @param images the images to set
+	 */
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
+	/**
 	 * @return the keywords
 	 */
-	@Column(name="keywords", unique=false, nullable=true, columnDefinition="VARCHAR(255)")
+	@Column(name="keywords", columnDefinition="VARCHAR(255)")
 	public String getKeywords() {
 		return keywords;
 	}
@@ -121,7 +142,7 @@ public class Article {
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", title=" + title + ", text=" + text
-				+ ", date=" + date + ", keywords=" + keywords + ", authorList="
-				+ authorList + "]";
+				+ ", images=" + images + ", date=" + date + ", keywords="
+				+ keywords + ", authorList=" + authorList + "]";
 	}
 }

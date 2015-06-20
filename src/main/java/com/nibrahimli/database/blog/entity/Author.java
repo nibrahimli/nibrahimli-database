@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
@@ -22,6 +24,7 @@ public class Author {
 	private String confirmPassword;
 	private String email;
 	private String confirmEmail;
+	private Image avatar ;
 	
 	/**
 	 * @return the id
@@ -41,7 +44,7 @@ public class Author {
 	/**
 	 * @return the pseudo
 	 */
-	@Column(name="pseudo", nullable=true, unique=true, columnDefinition="VARCHAR(255)")
+	@Column(name="pseudo", columnDefinition="VARCHAR(255)")
 	@Length(min=6, message="Pseudo must be at least 6 characters!")
 	public String getPseudo() {
 		return pseudo;
@@ -55,7 +58,7 @@ public class Author {
 	/**
 	 * @return the firstName
 	 */
-	@Column(name="first_name", unique=false, nullable=false, columnDefinition="VARCHAR(255)")
+	@Column(name="first_name", columnDefinition="VARCHAR(255)")
 	@Length(min=2,  message="First name must be at least 2 characters!")
 	public String getFirstName() {
 		return firstName;
@@ -69,7 +72,7 @@ public class Author {
 	/**
 	 * @return the lastName
 	 */
-	@Column(name="last_name", unique=false, nullable=false, columnDefinition="VARCHAR(255)")
+	@Column(name="last_name", columnDefinition="VARCHAR(255)")
 	@Length(min=2,  message="Last name must be at least 2 characters!")
 	public String getLastName() {
 		return lastName;
@@ -83,7 +86,7 @@ public class Author {
 	/**
 	 * @return the password
 	 */
-	@Column(name="password", unique=false, nullable=false, columnDefinition="VARCHAR(255)")
+	@Column(name="password", columnDefinition="VARCHAR(255)")
 	@Length(min=8,  message="last name must be at least 8 characters!")
 //	@Pattern.List({
 //		@Pattern(regexp = "(?=.*[0-9])", message = "Password must contain one digit!"),
@@ -103,7 +106,7 @@ public class Author {
 	/**
 	 * @return the confirmPassword
 	 */
-	@Column(name="confirm_password", unique=false, nullable=false, columnDefinition="VARCHAR(255)")
+	@Column(name="confirm_password", columnDefinition="VARCHAR(255)")
 	public String getConfirmPassword() {
 		return confirmPassword;
 	}
@@ -116,7 +119,7 @@ public class Author {
 	/**
 	 * @return the email
 	 */
-	@Column(name="email", unique=true, nullable=false, columnDefinition="VARCHAR(255)")
+	@Column(name="email", columnDefinition="VARCHAR(255)")
 	@Pattern(regexp="^[A-Za-z0-9+_.-]+@(.+)$", message="Not valid email!")
 	public String getEmail() {
 		return email;
@@ -130,7 +133,7 @@ public class Author {
 	/**
 	 * @return the confirmEmail
 	 */
-	@Column(name="confirm_email", unique=true, nullable=false, columnDefinition="VARCHAR(255)")
+	@Column(name="confirm_email", columnDefinition="VARCHAR(255)")
 	public String getConfirmEmail() {
 		return confirmEmail;
 	}
@@ -140,14 +143,29 @@ public class Author {
 	public void setConfirmEmail(String confirmEmail) {
 		this.confirmEmail = confirmEmail;
 	}
+	/**
+	 * @return the avatar
+	 */
+	@OneToOne
+	@JoinColumn(name="avatar_id")
+	public Image getAvatar() {
+		return avatar;
+	}
+	/**
+	 * @param avatar the avatar to set
+	 */
+	public void setAvatar(Image avatar) {
+		this.avatar = avatar;
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", pseudo=" + pseudo + ", firstName="
+		return "Author [id=" + id + ", pseudo=" + pseudo + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", password="
 				+ password + ", confirmPassword=" + confirmPassword
-				+ ", email=" + email + ", confirmEmail=" + confirmEmail + "]";
+				+ ", email=" + email + ", confirmEmail=" + confirmEmail
+				+ ", avatar=" + avatar + "]";
 	}
 }
