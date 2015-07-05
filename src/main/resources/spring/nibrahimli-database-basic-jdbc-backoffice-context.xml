@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    		http://www.springframework.org/schema/beans/spring-beans.xsd
+    		http://www.springframework.org/schema/tx
+        	http://www.springframework.org/schema/tx/spring-tx.xsd
+        	http://www.springframework.org/schema/aop
+        	http://www.springframework.org/schema/aop/spring-aop.xsd
+        	http://www.springframework.org/schema/context
+    		http://www.springframework.org/schema/context/spring-context.xsd">
+        
+    <context:property-placeholder location="classpath:database.properties" />
+    
+    <!-- Activates scanning of @Autowired -->
+	<context:annotation-config/>
+	
+	<bean id="dataSourceBackoffice" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">	    
+	    <!-- C3P0 ComboPooledDataSource -->
+	    <property name="driverClassName" value="${jdbc.driverClassName.backoffice}" />
+        <property name="url" value="${jdbc.url.backoffice}" />
+        <property name="username" value="${jdbc.username.backoffice}" />
+        <property name="password" value="${jdbc.password.backoffice}" />	    
+	</bean>
+	
+	<bean id="improvedNamingStrategyBackoffice" class="org.hibernate.cfg.ImprovedNamingStrategy"/>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	    <property name="dataSource" ref="dataSourceBackoffice" />
+	    <property name="packagesToScan" value="com.nibrahimli.database.backoffice.entity"/>
+			<property name="hibernateProperties">
+				<props>
+					<prop key="hibernate.connection.CharSet">utf8</prop>
+					<prop key="hibernate.dialect">${hibernate.dialect.myBlog}</prop>	               
+	                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto.myBlog}</prop> 
+	                <prop key="hibernate.show_sql">${hibernate.show_sql.myBlog}</prop>
+	                <prop key="current_session_context_class">thread</prop>
+		            <prop key="hibernate.c3p0.min_size">${hibernate.c3p0.min_size.myBlog}</prop>
+	                <prop key="hibernate.c3p0.max_size">${hibernate.c3p0.max_size.myBlog}</prop>
+	                <prop key="hibernate.c3p0.timeout">${hibernate.c3p0.timeout.myBlog}</prop>
+	                <prop key="hibernate.c3p0.max_statements">${hibernate.c3p0.max_statements.myBlog}</prop>
+				</props>
+			</property>
+			<property name="namingStrategy" ref="improvedNamingStrategyBackoffice"/>	
+	</bean>
+
+	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	    <property name="sessionFactory" ref="sessionFactory" />
+	</bean>	
+	 
+	 <!-- allows use @Transactional annotation -->
+	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
+	
+	
+	 <!-- Activates scanning of @Repository and @Service -->
+	<context:component-scan base-package="com.nibrahimli.database.backoffice.dao.impl"/>  	
+
+
+	<!-- Force the use of CGLIB proxies -->
+	<!-- <aop:config proxy-target-class="true"/>  -->
+	
+	<!-- Hibernate Exceptions for @Repository -->
+	<!-- <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/> -->
+
+
+
+</beans>
