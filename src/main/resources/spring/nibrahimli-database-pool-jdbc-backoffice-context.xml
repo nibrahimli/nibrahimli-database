@@ -31,7 +31,7 @@
 	
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 	    <property name="dataSource" ref="dataSourceBackoffice" />
-	    <property name="packagesToScan" value="com.nibrahimli.database.backoffice.entity"/>
+	    <property name="packagesToScan" value="com.nibrahimli.database.backoffice.entity, com.nibrahimli.database.generic.entity"/>
 			<property name="hibernateProperties">
 				<props>
 					<prop key="hibernate.connection.CharSet">utf8</prop>
@@ -57,7 +57,7 @@
 	
 	
 	 <!-- Activates scanning of @Repository and @Service -->
-	<context:component-scan base-package="com.nibrahimli.database.backoffice.dao.impl"/>  	
+	<context:component-scan base-package="com.nibrahimli.database.backoffice.dao.impl, com.nibrahimli.database.generic.dao.impl"/>  	
 
 
 	<!-- Force the use of CGLIB proxies -->

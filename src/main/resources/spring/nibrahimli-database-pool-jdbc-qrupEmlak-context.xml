@@ -19,33 +19,33 @@
     <!-- Activates scanning of @Autowired -->
 	<context:annotation-config/>
 	
-	<bean id="dataSourceBackoffice" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">	    
+	<bean id="dataSourceQrupEmlak" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">	    
 	    <!-- C3P0 ComboPooledDataSource -->
-	    <property name="driverClassName" value="${jdbc.driverClassName.backoffice}" />
-        <property name="url" value="${jdbc.url.backoffice}" />
-        <property name="username" value="${jdbc.username.backoffice}" />
-        <property name="password" value="${jdbc.password.backoffice}" />	    
+	    <property name="driverClass" value="${jdbc.driverClassName.qrupEmlak}" />
+        <property name="jdbcUrl" value="${jdbc.url.qrupEmlak}" />
+        <property name="user" value="${jdbc.username.qrupEmlak}" />
+        <property name="password" value="${jdbc.password.qrupEmlak}" />	    
 	</bean>
 	
-	<bean id="improvedNamingStrategyBackoffice" class="org.hibernate.cfg.ImprovedNamingStrategy"/>
+	<bean id="improvedNamingStrategyQrupEmlak" class="org.hibernate.cfg.ImprovedNamingStrategy"/>
 	
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-	    <property name="dataSource" ref="dataSourceBackoffice" />
-	    <property name="packagesToScan" value="com.nibrahimli.database.backoffice.entity, com.nibrahimli.database.generic.entity"/>
+	    <property name="dataSource" ref="dataSourceQrupEmlak" />
+	    <property name="packagesToScan" value="com.nibrahimli.database.blog.entity, com.nibrahimli.database.generic.entity"/>
 			<property name="hibernateProperties">
 				<props>
 					<prop key="hibernate.connection.CharSet">utf8</prop>
-					<prop key="hibernate.dialect">${hibernate.dialect.myBlog}</prop>	               
-	                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto.myBlog}</prop> 
-	                <prop key="hibernate.show_sql">${hibernate.show_sql.myBlog}</prop>
+					<prop key="hibernate.dialect">${hibernate.dialect.qrupEmlak}</prop>	               
+	                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto.qrupEmlak}</prop> 
+	                <prop key="hibernate.show_sql">${hibernate.show_sql.qrupEmlak}</prop>
 	                <prop key="current_session_context_class">thread</prop>
-		            <prop key="hibernate.c3p0.min_size">${hibernate.c3p0.min_size.myBlog}</prop>
-	                <prop key="hibernate.c3p0.max_size">${hibernate.c3p0.max_size.myBlog}</prop>
-	                <prop key="hibernate.c3p0.timeout">${hibernate.c3p0.timeout.myBlog}</prop>
-	                <prop key="hibernate.c3p0.max_statements">${hibernate.c3p0.max_statements.myBlog}</prop>
+		            <prop key="hibernate.c3p0.min_size">${hibernate.c3p0.min_size.qrupEmlak}</prop>
+	                <prop key="hibernate.c3p0.max_size">${hibernate.c3p0.max_size.qrupEmlak}</prop>
+	                <prop key="hibernate.c3p0.timeout">${hibernate.c3p0.timeout.qrupEmlak}</prop>
+	                <prop key="hibernate.c3p0.max_statements">${hibernate.c3p0.max_statements.qrupEmlak}</prop>
 				</props>
 			</property>
-			<property name="namingStrategy" ref="improvedNamingStrategyBackoffice"/>	
+			<property name="namingStrategy" ref="improvedNamingStrategyQrupEmlak"/>	
 	</bean>
 
 	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -57,7 +57,7 @@
 	
 	
 	 <!-- Activates scanning of @Repository and @Service -->
-	<context:component-scan base-package="com.nibrahimli.database.backoffice.dao.impl, com.nibrahimli.database.generic.dao.impl"/>  	
+	<context:component-scan base-package="com.nibrahimli.database.blog.dao.impl, com.nibrahimli.database.generic.dao.impl"/>  	
 
 
 	<!-- Force the use of CGLIB proxies -->
