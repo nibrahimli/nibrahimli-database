@@ -12,6 +12,8 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.nibrahimli.database.generic.entity.Image;
+
 @Entity
 @Table(name="author")
 public class Author {
