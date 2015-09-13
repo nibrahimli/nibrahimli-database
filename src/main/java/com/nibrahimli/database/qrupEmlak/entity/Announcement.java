@@ -33,7 +33,7 @@ public class Announcement {
 	private String description;
 	private Integer roomNumber;
 	private Integer floor;
-	private boolean lift;
+	private Boolean lift;
 	private HomeType homeType;
 	private Integer price;
 	private Currency currency ;
@@ -126,7 +126,7 @@ public class Announcement {
 	 * @return the lift
 	 */
 	@Column(name = "list", nullable = false, columnDefinition = "TINYINT default 0")
-	public boolean isLift() {
+	public Boolean getLift() {
 		return lift;
 	}
 	/**
