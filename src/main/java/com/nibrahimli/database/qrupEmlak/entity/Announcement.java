@@ -197,7 +197,7 @@ public class Announcement {
 	/**
 	 * @return the address
 	 */
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
 	public Address getAddress() {
 		return address;
