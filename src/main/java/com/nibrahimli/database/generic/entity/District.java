@@ -12,15 +12,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="city")
-public class City {
-
-	private Long id ;
-	private String name ;
-	private String originalName ;
-	private Integer postalCode ;
-	private Country country ;
+@Table(name="district")
+public class District {
 	
+	private Long id ;
+	private String name;
+	private String originalName;
+	private City city ;
 	/**
 	 * @return the id
 	 */
@@ -57,36 +55,24 @@ public class City {
 		return originalName;
 	}
 	/**
-	 * @param originalName the orginalName to set
+	 * @param originalName the originalName to set
 	 */
 	public void setOriginalName(String originalName) {
 		this.originalName = originalName;
 	}
 	/**
-	 * @return the postalCode
+	 * @return the city
 	 */
-	@Column(name="postal_code", nullable=true, length=10)
-	public Integer getPostalCode() {
-		return postalCode;
-	}
-	/**
-	 * @param postalCode the postalCode to set
-	 */
-	public void setPostalCode(Integer postalCode) {
-		this.postalCode = postalCode;
-	}
-	/**
-	 * @return the country
-	 */
+//	, fetch=FetchType.LAZY --add lazy
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "country_id", referencedColumnName = "id")
-	public Country getCountry() {
-		return country;
+	@JoinColumn(name = "city_id", referencedColumnName = "id")
+	public City getCity() {
+		return city;
 	}
 	/**
-	 * @param country the country to set
+	 * @param city the city to set
 	 */
-	public void setCountry(Country country) {
-		this.country = country;
+	public void setCity(City city) {
+		this.city = city;
 	}
 }

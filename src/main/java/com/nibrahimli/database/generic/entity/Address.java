@@ -18,6 +18,8 @@ public class Address {
 	private Long id;
 	private String street ;
 	private Integer number ;
+	private District district ;
+	private City city ;
 	private Country country ;
 
 	/**
@@ -38,7 +40,7 @@ public class Address {
 	/**
 	 * @return the street
 	 */
-	@Column(name="name", columnDefinition="VARCHAR(255)")
+	@Column(name="street", columnDefinition="VARCHAR(255)")
 	public String getStreet() {
 		return street;
 	}
@@ -51,7 +53,7 @@ public class Address {
 	/**
 	 * @return the number
 	 */
-	@Column(name="code", nullable=true, length=10)
+	@Column(name="number", nullable=true, length=10)
 	public Integer getNumber() {
 		return number;
 	}
@@ -62,10 +64,38 @@ public class Address {
 		this.number = number;
 	}
 	/**
+	 * @return the district
+	 */
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "district_id", referencedColumnName = "id")
+	public District getDistrict() {
+		return district;
+	}
+	/**
+	 * @param district the district to set
+	 */
+	public void setDistrict(District district) {
+		this.district = district;
+	}
+	/**
+	 * @return the city
+	 */
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "city_id", referencedColumnName = "id")
+	public City getCity() {
+		return city;
+	}
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(City city) {
+		this.city = city;
+	}
+	/**
 	 * @return the country
 	 */
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "country_id")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "country_id", referencedColumnName = "id")
 	public Country getCountry() {
 		return country;
 	}

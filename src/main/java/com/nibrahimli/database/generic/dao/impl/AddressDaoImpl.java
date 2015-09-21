@@ -2,7 +2,6 @@ package com.nibrahimli.database.generic.dao.impl;
 
 import org.springframework.stereotype.Repository;
 
-import com.nibrahimli.database.blog.dao.impl.GenericDaoImpl;
 import com.nibrahimli.database.generic.dao.AddressDao;
 import com.nibrahimli.database.generic.entity.Address;
 
