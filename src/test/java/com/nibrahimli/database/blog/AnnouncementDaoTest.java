@@ -4,6 +4,7 @@
 //import java.util.HashSet;
 //import java.util.Set;
 //
+//import org.hibernate.Hibernate;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.slf4j.Logger;
@@ -15,10 +16,12 @@
 //import com.nibrahimli.database.generic.dao.AddressDao;
 //import com.nibrahimli.database.generic.dao.CityDao;
 //import com.nibrahimli.database.generic.dao.CountryDao;
+//import com.nibrahimli.database.generic.dao.DistrictDao;
 //import com.nibrahimli.database.generic.dao.ImageDao;
 //import com.nibrahimli.database.generic.entity.Address;
 //import com.nibrahimli.database.generic.entity.City;
 //import com.nibrahimli.database.generic.entity.Country;
+//import com.nibrahimli.database.generic.entity.District;
 //import com.nibrahimli.database.generic.entity.Image;
 //import com.nibrahimli.database.qrupEmlak.dao.AnnouncementDao;
 //import com.nibrahimli.database.qrupEmlak.entity.Announcement;
@@ -44,6 +47,9 @@
 //	
 //	@Autowired
 //	private CountryDao countryDao ;
+//
+//	@Autowired
+//	private DistrictDao districtDao ;
 //	
 //	@Autowired
 //	private AddressDao addressDao ;
@@ -54,24 +60,20 @@
 //		logger.info("Announcement object");
 //		
 //		
-//		City city = new City();
-//		city.setName("Istanbul");
-//		city.setPostalCode(34);
-//		cityDao.create(city);
-//		
-//		Set<City> cities = new HashSet<City>();
-//		cities.add(city);
-//		
-//		Country country = new Country();
-//		country.setName("Turkiye");
-//		country.setCode(90);
-//		country.setCities(cities);
-//		countryDao.create(country);
+////		Country country = countryDao.getById(new Long(1));
+////		City city =  cityDao.getById(new Long(1));
+//		District district = districtDao.getById(new Long(1));
+////		Hibernate.initialize(district.getCity());
+//		City city = district.getCity();
+////		Hibernate.initialize(city.getCountry());
+//		Country country = city.getCountry();
 //		
 //		Address address = new Address();
 //		address.setNumber(12);
 //		address.setStreet("Eminonu");
 //		address.setCountry(country);
+//		address.setCity(city);
+//		address.setDistrict(district);
 //		addressDao.create(address);
 //		
 //		
