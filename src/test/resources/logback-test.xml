@@ -36,8 +36,8 @@
     <appender-ref ref="STDOUT" />
   </root>
   
-  <!-- <logger name="org.hibernate" level="TRACE"/>
-  <logger name="org.springframework" level="TRACE" /> -->
+  <!-- <logger name="org.hibernate" level="TRACE"/> -->
+  <!-- <logger name="org.springframework" level="TRACE" /> -->
   <!-- <logger name="com.mchange" level="INFO"/> -->
    
   
