@@ -35,9 +35,9 @@
 			<property name="hibernateProperties">
 				<props>
 					<prop key="hibernate.connection.CharSet">UTF-8</prop>
-					<property name="hibernate.connection.characterEncoding">UTF-8</property>
+					<!-- <property name="hibernate.connection.characterEncoding">UTF-8</property>
         			<property name="hibernate.connection.useUnicode">true</property>
-        			<!-- <property name="current_session_context_class">thread</property> --> 
+        			<property name="current_session_context_class">thread</property> --> 
 					<prop key="hibernate.dialect">${hibernate.dialect.qrupEmlak}</prop>	               
 	                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto.qrupEmlak}</prop> 
 	                <prop key="hibernate.show_sql">${hibernate.show_sql.qrupEmlak}</prop>

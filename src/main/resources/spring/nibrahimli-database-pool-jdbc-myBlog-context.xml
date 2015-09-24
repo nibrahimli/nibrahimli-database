@@ -35,6 +35,8 @@
 			<property name="hibernateProperties">
 				<props>
 					<prop key="hibernate.connection.CharSet">utf8</prop>
+					<!-- <property name="hibernate.connection.characterEncoding">UTF-8</property>
+        			<property name="hibernate.connection.useUnicode">true</property> -->
 					<prop key="hibernate.dialect">${hibernate.dialect.myBlog}</prop>	               
 	                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto.myBlog}</prop> 
 	                <prop key="hibernate.show_sql">${hibernate.show_sql.myBlog}</prop>
