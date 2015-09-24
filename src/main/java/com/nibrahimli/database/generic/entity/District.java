@@ -1,14 +1,10 @@
 package com.nibrahimli.database.generic.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,7 +14,7 @@ public class District {
 	private Long id ;
 	private String name;
 	private String originalName;
-	private City city ;
+	
 	/**
 	 * @return the id
 	 */
@@ -59,20 +55,5 @@ public class District {
 	 */
 	public void setOriginalName(String originalName) {
 		this.originalName = originalName;
-	}
-	/**
-	 * @return the city
-	 */
-//	, fetch=FetchType.LAZY --add lazy
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "city_id", referencedColumnName = "id")
-	public City getCity() {
-		return city;
-	}
-	/**
-	 * @param city the city to set
-	 */
-	public void setCity(City city) {
-		this.city = city;
 	}
 }

@@ -1,21 +1,34 @@
 package com.nibrahimli.database.generic.entity;
 
 
+import java.io.Serializable;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="country")
-public class Country {
+public class Country implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long id ;
 	private String name ;
 	private String originalName;
-	private Integer code ;	
+	private Integer code ;
+	private Set<City> cities;
 	
 	/**
 	 * @return the id
@@ -70,5 +83,24 @@ public class Country {
 	 */
 	public void setCode(Integer code) {
 		this.code = code;
-	}	
+	}
+	/**
+	 * @return the cities
+	 */
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinTable(
+            name="country_city",
+            joinColumns = @JoinColumn(name="country_id", referencedColumnName="id"),
+            inverseJoinColumns = @JoinColumn(name="city_id", referencedColumnName="id")
+    )
+	public Set<City> getCities() {
+		return cities;
+	}
+	/**
+	 * @param cities the cities to set
+	 */
+	public void setCities(Set<City> cities) {
+		this.cities = cities;
+	}
+	
 }
