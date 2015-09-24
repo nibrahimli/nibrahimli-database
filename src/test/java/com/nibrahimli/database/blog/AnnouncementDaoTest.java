@@ -2,9 +2,9 @@
 //
 //import java.util.Date;
 //import java.util.HashSet;
+//import java.util.List;
 //import java.util.Set;
 //
-//import org.hibernate.Hibernate;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.slf4j.Logger;
@@ -60,13 +60,44 @@
 //		logger.info("Announcement object");
 //		
 //		
-////		Country country = countryDao.getById(new Long(1));
-////		City city =  cityDao.getById(new Long(1));
-//		District district = districtDao.getById(new Long(1));
-////		Hibernate.initialize(district.getCity());
-//		City city = district.getCity();
-////		Hibernate.initialize(city.getCountry());
-//		Country country = city.getCountry();
+//		List<Country> country = countryDao.getAll();
+//		
+//		for (Country country2 : country) {
+//			
+//			for (City city : country2.getCities()) {
+//				System.out.println(city);
+//			}
+//			
+//		}
+//		
+//		
+//		System.out.println(country);
+		
+		
+//		District district = new District();
+//		district.setName("Eminonu");
+//		district.setOriginalName("eminönu");
+//		districtDao.create(district);
+//		
+//		Set<District> districts = new HashSet<District>() ;
+//		districts.add(district);
+//		
+//		City city =  new City();
+//		city.setName("Mugla");
+//		city.setOriginalName("Muğla");
+//		city.setPostalCode(74);
+//		city.setDistricts(districts);
+//		cityDao.create(city);
+//		Set<City> cities = new HashSet<City>() ;
+//		cities.add(city);
+//		
+//		
+//		Country country = new Country();
+//		country.setCities(cities);
+//		country.setCode(90);
+//		country.setName("Turkey");
+//		country.setOriginalName("Türkiye");
+//		countryDao.create(country);
 //		
 //		Address address = new Address();
 //		address.setNumber(12);
