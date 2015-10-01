@@ -1,12 +1,13 @@
 /**
  * 
  */
-package com.nibrahimli.database.generic.dao.impl;
+package com.nibrahimli.database.qrupEmlak.dao.impl;
 
 import org.springframework.stereotype.Repository;
 
-import com.nibrahimli.database.generic.dao.DistrictDao;
-import com.nibrahimli.database.generic.entity.District;
+import com.nibrahimli.database.generic.dao.impl.GenericDaoImpl;
+import com.nibrahimli.database.qrupEmlak.dao.DistrictDao;
+import com.nibrahimli.database.qrupEmlak.entity.District;
 
 /**
  * @author nibrahim

@@ -31,10 +31,12 @@
 	
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 	    <property name="dataSource" ref="dataSourceMyBlog" />
-	    <property name="packagesToScan" value="com.nibrahimli.database.blog.entity, com.nibrahimli.database.generic.entity"/>
+	    <property name="packagesToScan" value="com.nibrahimli.database.blog.entity, com.nibrahimli.database.image.entity"/>
 			<property name="hibernateProperties">
 				<props>
 					<prop key="hibernate.connection.CharSet">utf8</prop>
+					<!-- <prop key="hibernate.connection.characterEncoding">UTF-8</prop>
+        			<prop key="hibernate.connection.useUnicode">true</prop> -->
 					<prop key="hibernate.dialect">${hibernate.dialect.myBlog}</prop>	               
 	                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto.myBlog}</prop> 
 	                <prop key="hibernate.show_sql">${hibernate.show_sql.myBlog}</prop>
@@ -57,7 +59,7 @@
 	
 	
 	 <!-- Activates scanning of @Repository and @Service -->
-	<context:component-scan base-package="com.nibrahimli.database.blog.dao.impl, com.nibrahimli.database.generic.dao.impl"/>  	
+	<context:component-scan base-package="com.nibrahimli.database.blog.dao.impl, com.nibrahimli.database.image.dao.impl, com.nibrahimli.database.generic.dao.impl"/>  	
 
 
 

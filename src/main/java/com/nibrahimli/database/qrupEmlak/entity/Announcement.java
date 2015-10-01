@@ -1,5 +1,6 @@
 package com.nibrahimli.database.qrupEmlak.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -20,13 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.nibrahimli.database.generic.entity.Address;
-import com.nibrahimli.database.generic.entity.Image;
+import com.nibrahimli.database.image.entity.Image;
 
 @Entity
 @Table(name="announcement")
-public class Announcement {
+public class Announcement implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String title;
 	private Date date;
@@ -59,7 +63,7 @@ public class Announcement {
 	/**
 	 * @return the title
 	 */
-	@Column(name="title", columnDefinition="VARCHAR(255)")
+	@Column(name="title", columnDefinition="VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_turkish_ci")
 	public String getTitle() {
 		return title;
 	}
@@ -86,7 +90,7 @@ public class Announcement {
 	/**
 	 * @return the description
 	 */
-	@Column(name="description", columnDefinition = "LONGTEXT")
+	@Column(name="description", columnDefinition = "LONGTEXT CHARACTER SET utf8 COLLATE utf8_turkish_ci")
 	public String getDescription() {
 		return description;
 	}
@@ -172,9 +176,7 @@ public class Announcement {
 	}
 	/**
 	 * @param currency the currency to set
-	 *///	@Autowired
-//	private AnnouncementImageDao announcementImageDao ;
-
+	 */
 	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
@@ -182,9 +184,12 @@ public class Announcement {
 	/**
 	 * @return the images
 	 */
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinTable(name = "announcement_image", joinColumns = 
-	{@JoinColumn(name = "announcement_id", unique = false )}, inverseJoinColumns = {@JoinColumn(name = "image_id") })
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinTable(
+            name="announcement_image",
+            joinColumns = @JoinColumn(name="announcement_id", referencedColumnName="id"),
+            inverseJoinColumns = @JoinColumn(name="image_id", referencedColumnName="id")
+    )
 	public Set<Image> getImages() {
 		return images;
 	}

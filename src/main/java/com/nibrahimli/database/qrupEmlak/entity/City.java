@@ -1,18 +1,14 @@
-package com.nibrahimli.database.generic.entity;
+package com.nibrahimli.database.qrupEmlak.entity;
 
 import java.io.Serializable;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,7 +23,7 @@ public class City implements Serializable{
 	private String name ;
 	private String originalName ;
 	private Integer postalCode ;
-	private Set<District> districts;
+	private Country country ;
 	
 	/**
 	 * @return the id
@@ -84,21 +80,17 @@ public class City implements Serializable{
 		this.postalCode = postalCode;
 	}
 	/**
-	 * @return the districts
+	 * @return the country
 	 */
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinTable(
-            name="city_district",
-            joinColumns = @JoinColumn(name="city_id", referencedColumnName="id"),
-            inverseJoinColumns = @JoinColumn(name="district_id", referencedColumnName="id")
-    )
-	public Set<District> getDistricts() {
-		return districts;
+	@ManyToOne
+	@JoinColumn(name="country_Id")
+	public Country getCountry() {
+		return country;
 	}
 	/**
-	 * @param districts the districts to set
+	 * @param country the country to set
 	 */
-	public void setDistricts(Set<District> districts) {
-		this.districts = districts;
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 }

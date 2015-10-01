@@ -1,8 +1,7 @@
-package com.nibrahimli.database.generic.entity;
+package com.nibrahimli.database.qrupEmlak.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +21,7 @@ public class Address implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String street ;
-	private Integer number ;
+	private String number ;
 	private District district ;
 	private City city ;
 	private Country country ;
@@ -45,7 +44,7 @@ public class Address implements Serializable{
 	/**
 	 * @return the street
 	 */
-	@Column(name="street", columnDefinition="VARCHAR(255)")
+	@Column(name="street", columnDefinition="VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_turkish_ci")
 	public String getStreet() {
 		return street;
 	}
@@ -58,20 +57,20 @@ public class Address implements Serializable{
 	/**
 	 * @return the number
 	 */
-	@Column(name="number", nullable=true, length=10)
-	public Integer getNumber() {
+	@Column(name="number", columnDefinition="VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_turkish_ci")
+	public String getNumber() {
 		return number;
 	}
 	/**
 	 * @param number the number to set
 	 */
-	public void setNumber(Integer number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 	/**
 	 * @return the district
 	 */
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "district_id", referencedColumnName = "id")
 	public District getDistrict() {
 		return district;
@@ -85,7 +84,7 @@ public class Address implements Serializable{
 	/**
 	 * @return the city
 	 */
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "city_id", referencedColumnName = "id")
 	public City getCity() {
 		return city;
@@ -99,7 +98,7 @@ public class Address implements Serializable{
 	/**
 	 * @return the country
 	 */
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "country_id", referencedColumnName = "id")
 	public Country getCountry() {
 		return country;

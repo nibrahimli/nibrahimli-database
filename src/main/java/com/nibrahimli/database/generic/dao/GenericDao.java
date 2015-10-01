@@ -7,6 +7,7 @@ public interface GenericDao<T, PK extends Serializable> {
 
 	PK create(T newInstance);
 	List<T> getAll();
+	List<T> getAllDistinctOrderByDate();
 	T getById(PK id);
 	void update(T transiebtObject);
 	void delete(T persistentObject);

@@ -1,19 +1,28 @@
-package com.nibrahimli.database.generic.entity;
+package com.nibrahimli.database.qrupEmlak.entity;
+
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="district")
-public class District {
+public class District implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long id ;
 	private String name;
 	private String originalName;
+	private City city ;
 	
 	/**
 	 * @return the id
@@ -56,4 +65,19 @@ public class District {
 	public void setOriginalName(String originalName) {
 		this.originalName = originalName;
 	}
+	/**
+	 * @return the city
+	 */
+	@ManyToOne
+	@JoinColumn(name="city_Id")
+	public City getCity() {
+		return city;
+	}
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(City city) {
+		this.city = city;
+	}
+	
 }

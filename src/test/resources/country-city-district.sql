@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `country` (
   `original_name` varchar(255) character set utf8 collate utf8_turkish_ci DEFAULT NULL,
   `code` int(11) DEFAULT NULL,  
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 
 
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `city` (
   KEY `FK_li26rk1ckvdf75hmg4dcqyo4v` (`country_id`),
   CONSTRAINT `FK_nyys74rm1girctd3mi` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`)
 
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 
 
@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS `district` (
 
 
 
-INSERT INTO `country` (`original_name`, `name`, `code`) VALUES
-('Türkiye', 'Turkey',99);
+INSERT INTO `country` (`id`, `original_name`, `name`, `code`) VALUES
+(1, 'Türkiye', 'Turkey',99);
 
 
 INSERT INTO `city` (`id`, `postal_code`, `original_name`, `name`, `country_id`) VALUES

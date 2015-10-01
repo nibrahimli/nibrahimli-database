@@ -38,54 +38,15 @@
 //	public void test() {
 //		
 //
-////		List<District> districtList = districtDao.getAll();
-////		
-////		for (District district : districtList) {
-////			District updatedDistrict = district ;
-////			updatedDistrict.setName(updatedDistrict.getName().substring(0, 1).toUpperCase()  + updatedDistrict.getName().substring(1));
-////			districtDao.saveOrUpdate(updatedDistrict);
-////		}
+//		List<District> districtList = districtDao.getAll();
 //		
-//
+//		for (District district : districtList) {
+//			District updatedDistrict = district ;
+//			updatedDistrict.setName(updatedDistrict.getName().substring(0, 1).toUpperCase()  + updatedDistrict.getName().substring(1));
+//			districtDao.saveOrUpdate(updatedDistrict);
+//		}
+//		
 //		System.out.println("Done");
-//		
-//		
-//		
-//		
-//		
-//		
-//		
-//		
-//		
-//		
-//		
-//		
-//		
-//		
-////		try {
-////
-////			String cities = IOUtils.toString(this.getClass().getResourceAsStream("/code_city.csv"), "UTF-8");
-////			String[] city = cities.split("\n");
-////			Set<City> cityList = new HashSet<City>();
-////			for (int i = 1; i < city.length; i++) {
-////				String postalCode = city[i].split(",")[0];
-////				String cityName = city[i].split(",")[1];
-////				City dbCity = new City();
-////				dbCity.setPostalCode(Integer.parseInt(postalCode));
-////				dbCity.setName(cityName);
-////				cityDao.create(dbCity);
-////				cityList.add(dbCity);
-////			}
-////			
-////			Country country = new Country();
-////			country.setName("Turkey");
-////			country.setCode(90);
-////			country.setCities(cityList);
-////			countryDao.create(country);
-////		
-////		} catch (Exception e) {
-////			logger.error("Error occured {}", e);
-////		}
 //		
 //	  }
 //}

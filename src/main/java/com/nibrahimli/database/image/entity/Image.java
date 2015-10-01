@@ -1,4 +1,6 @@
-package com.nibrahimli.database.generic.entity;
+package com.nibrahimli.database.image.entity;
+
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +11,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="image")
-public class Image {
+public class Image implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private String path;
 	private String alt;

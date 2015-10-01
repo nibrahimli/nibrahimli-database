@@ -8,7 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.nibrahimli.database.generic.entity.Image;
+import com.nibrahimli.database.image.entity.Image;
 
 @Entity
 @Table(name="article_image")

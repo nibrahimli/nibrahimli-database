@@ -10,6 +10,7 @@
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 //import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.test.context.ContextConfiguration;
 //import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //
@@ -20,7 +21,7 @@
 //
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(
-//locations={"/spring/nibrahimli-database-pool-jdbc-backoffice-context.xml"})
+//locations={"/spring/nibrahimli-database-basic-jdbc-backoffice-context.xml"})
 //public class BackofficeDatabaseConnectionTest {
 //
 //	private static final Logger logger = LoggerFactory.getLogger(BackofficeDatabaseConnectionTest.class);
@@ -37,9 +38,12 @@
 //		SecurityRole securityRole = new SecurityRole();
 //		securityRole.setRoleName("ROLE_ADMIN");
 //		
+//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//		String hashedPassword = passwordEncoder.encode("123456");
+//		
 //		User user = new User();
-//		user.setUsername("admin");
-//		user.setPassword("1cv*ni2015");
+//		user.setUsername("test");
+//		user.setPassword(hashedPassword);
 //		user.setEnabled(true);
 //		Set<SecurityRole> securityRoleList1 = new HashSet<SecurityRole>();
 //		securityRoleList1.add(securityRole);
