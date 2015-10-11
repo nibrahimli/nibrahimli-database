@@ -11,5 +11,7 @@ import com.nibrahimli.database.qrupEmlak.entity.Announcement;
  *
  */
 public interface AnnouncementDao extends GenericDao<Announcement, Long> {
+	
+	public void deleteImage(Long imageId);
 
 }

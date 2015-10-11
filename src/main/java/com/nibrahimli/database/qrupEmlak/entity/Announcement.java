@@ -187,8 +187,8 @@ public class Announcement implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(
             name="announcement_image",
-            joinColumns = @JoinColumn(name="announcement_id", referencedColumnName="id"),
-            inverseJoinColumns = @JoinColumn(name="image_id", referencedColumnName="id")
+            joinColumns = @JoinColumn(name="announcement_id", referencedColumnName="id", nullable=false),
+            inverseJoinColumns = @JoinColumn(name="image_id", referencedColumnName="id", nullable=true)
     )
 	public Set<Image> getImages() {
 		return images;
