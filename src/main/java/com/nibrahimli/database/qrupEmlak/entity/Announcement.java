@@ -216,8 +216,14 @@ public class Announcement implements Serializable {
 
 
 	public enum HomeType {
-		Flat ("Mənzil"),
-		Villa ("Ev Həyatı") ;
+		
+		Apartment("Bina evi"),
+		House("Həyət evi"),
+		Villa("Villa"),
+		Land("Torpaq sahəsi"),
+		Estate("Daşınmaz Əmlak");
+		
+		
 		
 		private String type ;
 		

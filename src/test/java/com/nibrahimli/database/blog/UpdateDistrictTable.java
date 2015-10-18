@@ -11,10 +11,11 @@
 //import org.springframework.test.context.ContextConfiguration;
 //import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //
-//import com.nibrahimli.database.generic.dao.CityDao;
-//import com.nibrahimli.database.generic.dao.CountryDao;
-//import com.nibrahimli.database.generic.dao.DistrictDao;
-//import com.nibrahimli.database.generic.entity.District;
+//import com.nibrahimli.database.qrupEmlak.dao.CityDao;
+//import com.nibrahimli.database.qrupEmlak.dao.CountryDao;
+//import com.nibrahimli.database.qrupEmlak.dao.DistrictDao;
+//import com.nibrahimli.database.qrupEmlak.entity.District;
+//
 //
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(
