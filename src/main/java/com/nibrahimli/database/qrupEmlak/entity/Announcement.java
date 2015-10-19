@@ -39,6 +39,8 @@ public class Announcement implements Serializable {
 	private Integer floor;
 	private Boolean lift;
 	private HomeType homeType;
+	private Integer surface ;
+	private Integer buildingAge;
 	private Integer price;
 	private Currency currency ;
 	private Set<Image> images ;
@@ -129,16 +131,16 @@ public class Announcement implements Serializable {
 	/**
 	 * @return the lift
 	 */
-	@Column(name = "list", nullable = false, columnDefinition = "TINYINT default 0")
+	@Column(name = "lift", nullable = false, columnDefinition = "TINYINT default 0")
 	public Boolean getLift() {
 		return lift;
 	}
 	/**
 	 * @param lift the lift to set
 	 */
-	public void setLift(boolean lift) {
+	public void setLift(Boolean lift) {
 		this.lift = lift;
-	}
+	}	
 	/**
 	 * @return the homeType
 	 */
@@ -152,6 +154,32 @@ public class Announcement implements Serializable {
 	 */
 	public void setHomeType(HomeType homeType) {
 		this.homeType = homeType;
+	}	
+	/**
+	 * @return the surface
+	 */
+	@Column(name="surface", nullable=true, length=10)
+	public Integer getSurface() {
+		return surface;
+	}
+	/**
+	 * @param surface the surface to set
+	 */	
+	public void setSurface(Integer surface) {
+		this.surface = surface;
+	}
+	/**
+	 * @return the buildingAge
+	 */
+	@Column(name="building_age", nullable=true, length=10)
+	public Integer getBuildingAge() {
+		return buildingAge;
+	}
+	/**
+	 * @param buildingAge the buildingAge to set
+	 */
+	public void setBuildingAge(Integer buildingAge) {
+		this.buildingAge = buildingAge;
 	}
 	/**
 	 * @return the price
@@ -249,9 +277,10 @@ public class Announcement implements Serializable {
 	}
 	
 	public enum Currency {
-		Manat ("AZN"),
-		Dollar ("USD"),
-		Euro ("EUR");
+		Manat("AZN"),
+		Dollar("USD"),
+		Euro("EUR"),
+		Lira("TL");
 		
 		private String code ;
 		
