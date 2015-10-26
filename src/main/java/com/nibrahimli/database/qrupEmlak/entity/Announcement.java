@@ -39,9 +39,9 @@ public class Announcement implements Serializable {
 	private Integer floor;
 	private Boolean lift;
 	private HomeType homeType;
-	private Integer surface ;
+	private Double surface ;
 	private Integer buildingAge;
-	private Integer price;
+	private Double price;
 	private Currency currency ;
 	private Set<Image> images ;
 	private Address address ;
@@ -159,13 +159,13 @@ public class Announcement implements Serializable {
 	 * @return the surface
 	 */
 	@Column(name="surface", nullable=true, length=10)
-	public Integer getSurface() {
+	public Double getSurface() {
 		return surface;
 	}
 	/**
 	 * @param surface the surface to set
 	 */	
-	public void setSurface(Integer surface) {
+	public void setSurface(Double surface) {
 		this.surface = surface;
 	}
 	/**
@@ -185,13 +185,13 @@ public class Announcement implements Serializable {
 	 * @return the price
 	 */
 	@Column(name="price", nullable=true, length=10)
-	public Integer getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 	/**
 	 * @param price the price to set
 	 */
-	public void setPrice(Integer price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 	/**
