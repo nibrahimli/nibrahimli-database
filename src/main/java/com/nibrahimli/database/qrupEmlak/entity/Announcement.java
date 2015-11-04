@@ -43,6 +43,8 @@ public class Announcement implements Serializable {
 	private Integer buildingAge;
 	private Double price;
 	private Currency currency ;
+	private Boolean featuredAnnouncement;
+	private Integer viewsNumber;	
 	private Set<Image> images ;
 	private Address address ;
 	
@@ -208,7 +210,32 @@ public class Announcement implements Serializable {
 	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
-
+	/**
+	 * @return the featuredAnnouncement
+	 */
+	@Column(name = "featured_announcement", nullable = false, columnDefinition = "TINYINT default 0")
+	public Boolean getFeaturedAnnouncement() {
+		return featuredAnnouncement;
+	}
+	/**
+	 * @param featuredAnnouncement the featuredAnnouncement to set
+	 */
+	public void setFeaturedAnnouncement(Boolean featuredAnnouncement) {
+		this.featuredAnnouncement = featuredAnnouncement;
+	}
+	/**
+	 * @return the viewsNumber
+	 */
+	@Column(name="views_number", nullable=true, length=10)
+	public Integer getViewsNumber() {
+		return viewsNumber;
+	}
+	/**
+	 * @param viewsNumber the viewsNumber to set
+	 */
+	public void setViewsNumber(Integer viewsNumber) {
+		this.viewsNumber = viewsNumber;
+	}
 	/**
 	 * @return the images
 	 */
@@ -249,7 +276,8 @@ public class Announcement implements Serializable {
 		House("Həyət evi"),
 		Villa("Villa"),
 		Land("Torpaq sahəsi"),
-		Estate("Daşınmaz Əmlak");
+		Estate("Daşınmaz Əmlak"),
+		Hotel("Otel");
 		
 		
 		
