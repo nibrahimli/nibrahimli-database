@@ -1,16 +1,23 @@
 package com.nibrahimli.database.generic.dao.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.nibrahimli.database.filter.EntityFilter;
+import com.nibrahimli.database.filter.Filter;
 import com.nibrahimli.database.generic.dao.GenericDao;
+import com.nibrahimli.database.order.EntityOrder;
+import com.nibrahimli.database.order.Order;
 
 
 public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T, PK>{
@@ -31,9 +38,17 @@ public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T,
 	
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly=true)
+	public List<T> getAll(String... fields) {
+		Criteria crit = getSession().createCriteria(type) ;
+		crit = addProjection(crit, fields) ;
+		return crit.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly=true)
 	public List<T> getAllDistinctOrderByDate() {
-		List<T> result = getSession().createCriteria(type)
-				.addOrder(Order.desc("date"))
+		Criteria crt = getSession().createCriteria(type);
+		List<T> result = crt.addOrder(org.hibernate.criterion.Order.desc("date"))
                 .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)  
                 .list(); 
 		return result;
@@ -64,6 +79,141 @@ public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T,
 	@Transactional
 	public void saveOrUpdate(T transientObject) {
 		getSession().saveOrUpdate(transientObject);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<T> getAll(EntityFilter entityFilter, String... fields) {
+		return (List<T>) getAll(entityFilter, 0, fields);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<T> getAll(EntityFilter entityFilter, EntityOrder entityOrder, String... fields) {
+		return (List<T>) getAll(entityFilter, entityOrder, 0, fields);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<T> getAll(EntityFilter entityFilter, int limit, String... fields) {
+		return getAll(entityFilter, null, limit, fields) ;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
+	public List<T> getAll(EntityFilter entityFilter, EntityOrder entityOrder, int limit, String... fields) {
+		Criteria crit = createCriteria() ;
+		crit = addFilters(crit, entityFilter) ;
+		crit = addOrder(crit, entityOrder) ;
+		if(limit > 0)
+		{
+			crit.setMaxResults(limit) ;
+		}
+		crit.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		crit = addProjection(crit, fields) ;
+		
+		
+		return (List<T>) crit.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
+	public T get(EntityFilter entityFilter, String... fields) {
+		Criteria crit = createCriteria() ;
+		crit = addFilters(crit, entityFilter) ;
+		crit = addProjection(crit, fields) ;
+		return (T) crit.uniqueResult();
+	}
+	
+	@Transactional(readOnly = true)
+	public Long count(EntityFilter entityFilter) {
+		Criteria crit = createCriteria() ;
+		crit = addFilters(crit, entityFilter) ;
+		return (Long) crit.setProjection(Projections.rowCount()).uniqueResult();
+	}
+	
+	
+	protected Criteria createCriteria()
+	{
+		return getSession().createCriteria(type) ;
+	}
+	
+	protected Criteria addFilters(Criteria crit, EntityFilter entityFilter) {
+		if(entityFilter != null)
+		{
+			for(Filter filter:entityFilter.getFilters())
+			{
+				crit = getAliases(crit, filter.getPropertyName()) ;
+				crit.add(filter.getHibernateCriteria()) ;				
+			}
+		}
+		return crit;
+	}
+	
+	private Criteria addOrder(Criteria crit, EntityOrder entityOrder) {
+		if(entityOrder != null && CollectionUtils.isNotEmpty(entityOrder.getOrders()))
+		{
+			for(Order order : entityOrder.getOrders())
+			{
+				crit.addOrder(order.getHibernateOrder()) ;
+			}
+		}
+		
+		return crit ;
+	}
+	
+	protected Criteria addProjection(Criteria criteria, String... fields)
+	{
+		if(fields.length > 0)
+		{
+			ProjectionList pl = Projections.projectionList() ;
+			
+			for(String field:fields)
+			{
+				pl.add(Projections.property(field), field) ;
+			}
+			criteria.setProjection(pl) ;
+			
+			criteria = getAliases(criteria, fields) ;				
+		}
+		
+		return criteria ;
+	}
+	
+	protected Criteria getAliases(Criteria criteria, String... fields)
+	{
+		List<String> aliases = new ArrayList<String>() ;
+		for (String field:fields) {
+
+			//Boolean hasChild = false;
+			if (field.contains(".")) {
+				String[] sp = field.split("\\.");
+				for (int i = 0; i < sp.length -1; i++) {
+					String fieldName = sp[i];
+					if(!aliases.contains(fieldName))
+						aliases.add(fieldName) ;
+				}
+				
+			}
+		}
+		if(CollectionUtils.isNotEmpty(aliases)){
+//			for(String alias : aliases)
+//			{
+//				criteria.createAlias(alias, alias) ;
+//			}
+//			
+			criteria.createAlias("address", "address") ;
+			criteria.createAlias("address.city", "city") ;
+						
+			
+//			if(aliases != null && aliases.size() > 0)
+//			{
+//				criteria.setResultTransformer(NestedTransformers.aliasToNestedBean(type)) ;
+//			}
+//			else
+//			{
+//				criteria.setResultTransformer(Transformers.aliasToBean(type));
+//			}	
+		}
+		return criteria ;
 	}
 	
 	/**
