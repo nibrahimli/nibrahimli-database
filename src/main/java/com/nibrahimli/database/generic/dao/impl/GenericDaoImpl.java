@@ -1,10 +1,12 @@
 package com.nibrahimli.database.generic.dao.impl;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.MapUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -180,29 +182,35 @@ public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T,
 	
 	protected Criteria getAliases(Criteria criteria, String... fields)
 	{
-		List<String> aliases = new ArrayList<String>() ;
+		Map<String, String> aliases = new HashMap<String, String>() ;
 		for (String field:fields) {
 
 			//Boolean hasChild = false;
 			if (field.contains(".")) {
 				String[] sp = field.split("\\.");
+				String associationPath = "";
 				for (int i = 0; i < sp.length -1; i++) {
 					String fieldName = sp[i];
-					if(!aliases.contains(fieldName))
-						aliases.add(fieldName) ;
+					if(aliases.isEmpty()){
+						associationPath+= fieldName; 
+						aliases.put(associationPath, fieldName) ;						
+					}
+					else if(!aliases.containsKey(associationPath)){
+						associationPath+="."+fieldName;
+						aliases.put(associationPath, fieldName) ;
+					}
+					else
+						continue;
+						
 				}
 				
 			}
 		}
-		if(CollectionUtils.isNotEmpty(aliases)){
-//			for(String alias : aliases)
-//			{
-//				criteria.createAlias(alias, alias) ;
-//			}
-//			
-			criteria.createAlias("address", "address") ;
-			criteria.createAlias("address.city", "city") ;
-						
+		if(MapUtils.isNotEmpty(aliases)){
+			for(String associationPath : aliases.keySet())
+			{
+				criteria.createAlias(associationPath, aliases.get(associationPath)) ;
+			}				
 			
 //			if(aliases != null && aliases.size() > 0)
 //			{
