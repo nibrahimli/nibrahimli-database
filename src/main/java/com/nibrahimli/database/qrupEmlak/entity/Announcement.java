@@ -43,7 +43,7 @@ public class Announcement implements Serializable {
 	private Integer buildingAge;
 	private Double price;
 	private Currency currency ;
-	private Boolean featuredAnnouncement;
+	private Boolean featured;
 	private Integer viewsNumber;	
 	private Set<Image> images ;
 	private Address address ;
@@ -211,17 +211,17 @@ public class Announcement implements Serializable {
 		this.currency = currency;
 	}
 	/**
-	 * @return the featuredAnnouncement
+	 * @return the featured
 	 */
-	@Column(name = "featured_announcement", nullable = false, columnDefinition = "TINYINT default 0")
-	public Boolean getFeaturedAnnouncement() {
-		return featuredAnnouncement;
+	@Column(name = "featured", nullable = false, columnDefinition = "TINYINT default 0")
+	public Boolean getFeatured() {
+		return featured;
 	}
 	/**
-	 * @param featuredAnnouncement the featuredAnnouncement to set
+	 * @param featured the featured to set
 	 */
-	public void setFeaturedAnnouncement(Boolean featuredAnnouncement) {
-		this.featuredAnnouncement = featuredAnnouncement;
+	public void setFeatured(Boolean featured) {
+		this.featured = featured;
 	}
 	/**
 	 * @return the viewsNumber
