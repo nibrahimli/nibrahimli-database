@@ -13,6 +13,7 @@ public interface GenericDao<T, PK extends Serializable> {
 	List<T> getAll(String... fields);
 	List<T> getAll(EntityFilter entityFilter, String... fields);
 	List<T> getAll(EntityFilter entityFilter, int limit, String... fields);
+	List<T> getAll(EntityOrder entityOrder, String... fields) ;
 	List<T> getAll(EntityFilter entityFilter, EntityOrder entityOrder, String... fields) ;
 	List<T> getAll(EntityFilter entityFilter, EntityOrder entityOrder, int limit, String... fields) ;
 	List<T> getAllDistinctOrderByDate();

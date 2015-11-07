@@ -89,6 +89,11 @@ public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T,
 	}
 	
 	@Transactional(readOnly = true)
+	public List<T> getAll(EntityOrder entityOrder, String... fields) {
+		return (List<T>) getAll(entityOrder, 0, fields);
+	}
+	
+	@Transactional(readOnly = true)
 	public List<T> getAll(EntityFilter entityFilter, EntityOrder entityOrder, String... fields) {
 		return (List<T>) getAll(entityFilter, entityOrder, 0, fields);
 	}
@@ -96,6 +101,11 @@ public class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T,
 	@Transactional(readOnly = true)
 	public List<T> getAll(EntityFilter entityFilter, int limit, String... fields) {
 		return getAll(entityFilter, null, limit, fields) ;
+	}
+	
+	@Transactional(readOnly = true)
+	public List<T> getAll(EntityOrder entityOrder, int limit, String... fields) {
+		return getAll(null, entityOrder, limit, fields) ;
 	}
 	
 	
