@@ -41,7 +41,7 @@ public class Announcement implements Serializable {
 	private HomeType homeType;
 	private Double surface ;
 	private Integer buildingAge;
-	private Double price;
+	private Integer price;
 	private Currency currency ;
 	private Boolean featured;
 	private Integer viewsNumber;	
@@ -187,13 +187,13 @@ public class Announcement implements Serializable {
 	 * @return the price
 	 */
 	@Column(name="price", nullable=true, length=10)
-	public Double getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 	/**
 	 * @param price the price to set
 	 */
-	public void setPrice(Double price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 	/**
