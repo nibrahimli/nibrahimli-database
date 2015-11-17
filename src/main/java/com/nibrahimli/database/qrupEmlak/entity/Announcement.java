@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -37,14 +39,14 @@ public class Announcement implements Serializable {
 	private String description;
 	private Integer roomNumber;
 	private Integer floor;
-	private Boolean lift;
 	private HomeType homeType;
 	private Double surface ;
 	private Integer buildingAge;
 	private Integer price;
 	private Currency currency ;
-	private Boolean featured;
+	private Boolean popular;
 	private Integer viewsNumber;	
+	private Set<Feature> features ;
 	private Set<Image> images ;
 	private Address address ;
 	
@@ -129,19 +131,6 @@ public class Announcement implements Serializable {
 	 */
 	public void setFloor(Integer floor) {
 		this.floor = floor;
-	}
-	/**
-	 * @return the lift
-	 */
-	@Column(name = "lift", nullable = false, columnDefinition = "TINYINT default 0")
-	public Boolean getLift() {
-		return lift;
-	}
-	/**
-	 * @param lift the lift to set
-	 */
-	public void setLift(Boolean lift) {
-		this.lift = lift;
 	}	
 	/**
 	 * @return the homeType
@@ -211,17 +200,17 @@ public class Announcement implements Serializable {
 		this.currency = currency;
 	}
 	/**
-	 * @return the featured
+	 * @return the popular
 	 */
-	@Column(name = "featured", nullable = false, columnDefinition = "TINYINT default 0")
-	public Boolean getFeatured() {
-		return featured;
+	@Column(name = "popular", nullable = false, columnDefinition = "TINYINT default 0")
+	public Boolean getPopular() {
+		return popular;
 	}
 	/**
-	 * @param featured the featured to set
+	 * @param popular the popular to set
 	 */
-	public void setFeatured(Boolean featured) {
-		this.featured = featured;
+	public void setPopular(Boolean popular) {
+		this.popular = popular;
 	}
 	/**
 	 * @return the viewsNumber
@@ -235,6 +224,22 @@ public class Announcement implements Serializable {
 	 */
 	public void setViewsNumber(Integer viewsNumber) {
 		this.viewsNumber = viewsNumber;
+	}
+	/**
+	 * @return the features
+	 */		
+	@ElementCollection(fetch=FetchType.EAGER)	
+	@CollectionTable(name="announcement_feature", joinColumns=@JoinColumn(name="announcement_id"))
+	@Column(name="feature", nullable = true)
+	@Enumerated(EnumType.STRING)
+	public Set<Feature> getFeatures() {
+		return features;
+	}
+	/**
+	 * @param features the features to set
+	 */
+	public void setFeatures(Set<Feature> features) {
+		this.features = features;
 	}
 	/**
 	 * @return the images
@@ -337,5 +342,48 @@ public class Announcement implements Serializable {
 			return valueOf(code) ;
 		}	
 		
+	}
+	
+public enum Feature {
+		
+		Lift("Lift"),
+		Balcony("Balkon"),
+		Shower("Duş kabini"),
+		Gas("Qaz"),
+		USKitchen("Amerikan mətbəği"),
+		Internet("İnternet"),
+		CATV("Kabel TV"),
+		Telephone("Telefon"),
+		Views("Mənzərə"),
+		Center("Mərkəz"),
+		Reachable("neqliyyat vasitəsine yaxın"),
+		ParquetFlooring("parket döşəmə"),
+		CeramicFlooring("seramik döşəmə"),
+		LaminateFlooring("laminant döşəmə"),
+		SteelDoor("seyf qapı"),
+		PVCWindows("pvc pəncərə");
+		
+
+		private String type ;
+		
+		public String getType() {
+			return type;
+		}
+		
+		public void setType(String type) {
+			this.type = type;
+		}
+		
+		private Feature(String type) {
+			this.setType(type);
+		}
+		
+		public static Feature permissiveValueOf(String type) {
+			if(type == null)
+				throw new IllegalArgumentException();
+			for(Feature v : values())
+				if(type.equalsIgnoreCase(v.getType())) return v;
+			return valueOf(type) ;
+		}	
 	}
 }
