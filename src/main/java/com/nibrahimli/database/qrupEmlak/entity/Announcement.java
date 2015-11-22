@@ -356,7 +356,7 @@ public enum Feature {
 		Telephone("Telefon"),
 		Views("Mənzərə"),
 		Center("Mərkəz"),
-		Reachable("neqliyyat vasitəsine yaxın"),
+		Reachable("nəqliyyat vasitəsinə yaxın"),
 		ParquetFlooring("parket döşəmə"),
 		CeramicFlooring("seramik döşəmə"),
 		LaminateFlooring("laminant döşəmə"),
