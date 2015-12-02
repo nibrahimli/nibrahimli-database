@@ -356,12 +356,12 @@ public enum Feature {
 		Telephone("Telefon"),
 		Views("Mənzərə"),
 		Center("Mərkəz"),
-		Reachable("nəqliyyat vasitəsinə yaxın"),
-		ParquetFlooring("parket döşəmə"),
-		CeramicFlooring("seramik döşəmə"),
-		LaminateFlooring("laminant döşəmə"),
-		SteelDoor("seyf qapı"),
-		PVCWindows("pvc pəncərə");
+		Reachable("Nəqliyyat vasitəsinə yaxın"),
+		ParquetFlooring("Parket döşəmə"),
+		CeramicFlooring("Seramik döşəmə"),
+		LaminateFlooring("Laminant döşəmə"),
+		SteelDoor("Seyf qapı"),
+		PVCWindows("PVC pəncərə");
 		
 
 		private String type ;
