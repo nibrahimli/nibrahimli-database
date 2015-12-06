@@ -19,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -250,6 +251,7 @@ public class Announcement implements Serializable {
             joinColumns = @JoinColumn(name="announcement_id", referencedColumnName="id", nullable=false),
             inverseJoinColumns = @JoinColumn(name="image_id", referencedColumnName="id", nullable=true)
     )
+	@OrderBy
 	public Set<Image> getImages() {
 		return images;
 	}
