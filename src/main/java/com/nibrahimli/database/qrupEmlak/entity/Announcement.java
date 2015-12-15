@@ -283,7 +283,8 @@ public class Announcement implements Serializable {
 		House("Həyət evi"),
 		Villa("Villa"),
 		Land("Torpaq sahəsi"),
-		Estate("Daşınmaz Əmlak"),
+		Office("Ofis"),
+		Object("Obyekt"),
 		Hotel("Otel");
 		
 		
