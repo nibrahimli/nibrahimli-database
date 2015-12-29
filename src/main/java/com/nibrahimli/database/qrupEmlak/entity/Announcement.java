@@ -46,7 +46,8 @@ public class Announcement implements Serializable {
 	private Integer price;
 	private Currency currency ;
 	private Boolean popular;
-	private Integer viewsNumber;	
+	private Integer viewsNumber;
+	private String summary;
 	private Set<Feature> features ;
 	private Set<Image> images ;
 	private Address address ;
@@ -225,6 +226,19 @@ public class Announcement implements Serializable {
 	 */
 	public void setViewsNumber(Integer viewsNumber) {
 		this.viewsNumber = viewsNumber;
+	}
+	/**
+	 * @return the summary
+	 */
+	@Column(name="summary", nullable=true, columnDefinition = "LONGTEXT CHARACTER SET utf8 COLLATE utf8_turkish_ci")
+	public String getSummary() {
+		return summary;
+	}
+	/**
+	 * @param summary the summary to set
+	 */
+	public void setSummary(String summary) {
+		this.summary = summary;
 	}
 	/**
 	 * @return the features
