@@ -80,7 +80,7 @@ public class QrupEmlakSitemap implements Serializable {
 	/**
 	 * @param changeFreq the changeFreq to set
 	 */
-	public void setChangefreq(ChangeFreq changeFreq) {
+	public void setChangeFreq(ChangeFreq changeFreq) {
 		this.changeFreq = changeFreq;
 	}
 	/**
